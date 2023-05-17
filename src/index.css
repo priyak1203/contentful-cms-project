@@ -2,10 +2,15 @@
           Variables
 ================================== */
 :root {
+  /* colors */
+  --primary-500: #645cff;
+
   /* grey */
   --grey-50: #f8fafc;
   --grey-200: #e2e8f0;
+  --grey-400: #94a3b8;
   --grey-600: #475569;
+  --grey-700: #334155;
   --grey-900: #0f172a;
 
   /* rest of the colors */
@@ -15,9 +20,16 @@
   /* rest of the vars */
   --backgroundColor: var(--grey-50);
   --textColor: var(--grey-900);
+  --borderRadius: 0.25rem;
   --letterSpacing: 1px;
-
+  --transition: 0.3s ease-in-out all;
   --max-width: 1120px;
+
+  /* box shadow*/
+  --shadow-2: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-4: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 /* ===============================
@@ -45,7 +57,9 @@ p {
   margin: 0;
 }
 
-h1 {
+h1,
+h2,
+h5 {
   margin: 0;
   font-weight: 400;
   line-height: 1;
@@ -57,9 +71,21 @@ h1 {
   font-size: clamp(2rem, 5vw, 5rem); /* Large heading */
 }
 
+h2 {
+  font-size: clamp(1.5rem, 3vw, 3rem); /* Medium heading */
+}
+
+h5 {
+  font-size: clamp(0.875rem, 1.5vw, 1.5rem); /* Tiny heading */
+}
+
+a {
+  text-decoration: none;
+}
+
 /*
 ==============
-PROJECT CSS
+Hero CSS
 ==============
 */
 
@@ -111,5 +137,95 @@ body {
   }
   .img-container {
     display: block;
+  }
+}
+
+/*
+==============
+Loading CSS
+==============
+*/
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading {
+  width: 6rem;
+  height: 6rem;
+  border: 5px solid var(--grey-400);
+  border-radius: 50%;
+  border-top-color: var(--primary-500);
+  animation: spinner 0.6s linear infinite;
+  margin: 0 auto;
+}
+
+/*
+==============
+Projects CSS
+==============
+*/
+
+.projects {
+  padding: 5rem 0;
+}
+
+.title {
+  text-align: center;
+}
+
+.title-underline {
+  background: var(--primary-500);
+  width: 4rem;
+  height: 0.25rem;
+  margin: 0 auto;
+  margin-top: 1rem;
+}
+
+.projects-center {
+  width: 90vw;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  margin-top: 3rem;
+  display: grid;
+  gap: 2rem;
+}
+
+.project {
+  background: var(--white);
+  display: block;
+  border-radius: var(--borderRadius);
+  box-shadow: var(--shadow-2);
+  transition: var(--transition);
+}
+
+.project:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-4);
+}
+
+.project img {
+  height: 15rem;
+  border-top-right-radius: var(--borderRadius);
+  border-top-left-radius: var(--borderRadius);
+}
+
+.project h5 {
+  text-align: center;
+  padding: 1rem 0;
+  color: var(--grey-700);
+}
+
+@media (min-width: 768px) {
+  .projects-center {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 992px) {
+  .projects-center {
+    grid-template-columns: 1fr 1fr 1fr;
   }
 }
